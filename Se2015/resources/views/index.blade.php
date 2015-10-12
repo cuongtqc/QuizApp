@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="{{assert('../../public/se2015/css/bootstrap.min.css')}}" />
+		<link rel="stylesheet" href="{{assert('../../public/se2015/css/animate.min.css')}}" />
+		<link rel="stylesheet" href="{{assert('../../public/se2015/css/main.css')}}" />
+
+		<script src="{{assert('../../public/se2015/js/system/jquery.min.js')}}"> </script>
+		<script src="{{assert('../../public/se2015/js/system/bootstrap.min.js')}}"> </script>
+		<script src="{{assert('../../public/se2015/js/system/angular.min.js')}}"> </script>
+		<script src="{{assert('../../public/se2015/js/system/satellizer.min.js')}}"> </script>
+		<script src="{{assert('../../public/se2015/js/system/angular-animate.min.js')}}"> </script>
+		<script src="{{assert('../../public/se2015/js/system/wow.min.js')}}"> </script>
+		
+		<script src="{{assert('../../public/se2015/js/main.js')}}"> </script>
+    </head>
+	
+	
+    <body ng-app="Quiz" class="container-fluid">
+	
+		<div id="LoginTab" ng-controller="LoginForm" class="container-fluid wow fadeInDown">
+			<div class="row" id="signInList">
+				<div class="btn btn-login btn-lg col-lg-2 col-md-3 col-sm-6 col-xs-12" id="facebookBtn" ng-click="authenticate('facebook')">Sign in with Facebook</div>
+				<div class="btn btn-login btn-lg col-lg-2 col-md-3 col-sm-6 col-xs-12" id="googleBtn" ng-click="authenticate('google')">Sign in with Google</div>
+				<div class="btn btn-login btn-lg col-lg-2 col-md-3 col-sm-6 col-xs-12" id="twitterBtn" ng-click="authenticate('twitter')">Sign in with Twitter</div>
+				<a href="#" class="btn btn-login btn-lg col-lg-2 col-lg-offset-4 col-md-3 col-sm-6 col-xs-12"> Leaderboard </a>
+			</div>
+		</div>
+	
+		<div ng-controller="TopicController" class="container-fluid wow slideInLeft">
+			<div class="row no-gutter">
+				<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" ng-repeat="topic in menu">
+					<a href="{{ topic.link }}" class="card-box">
+						<img src="{{ topic.icon }}" class="img" alt="{{ topic.tittle }}">
+						<div class="card-box-caption">
+							<div class="card-box-caption-content">
+								<div class="project-category text-faded">
+									<h3>{{ topic.tittle }}</h3>
+								</div>
+								<div class="project-name">
+									{{ topic.description }}
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+    </body>
+</html>

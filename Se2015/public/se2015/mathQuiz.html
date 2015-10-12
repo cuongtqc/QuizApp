@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/main.css" /> 
+		<link rel="stylesheet" href="css/quiz.css" /> 
+
+		<script src="js/system/jquery.min.js"> </script>
+		<script src="js/system/bootstrap.min.js"> </script>
+		<script src="js/system/angular.min.js"> </script>
+		<script src="js/system/satellizer.min.js"> </script>
+		<script src="js/system/angular-animate.min.js"> </script>
+		<script src="js/system/wow.min.js"> </script>
+		
+		<script src="js/main.js"> </script>
+		<script src="js/quiz.js"> </script>
+		<script src="js/topic/math.js"> </script>
+    </head>
+	
+    <body ng-app="Quiz" class="container-fluid">
+	
+		<div id="LoginTab" ng-controller="LoginForm" class="container-fluid wow fadeInDown">
+			<div class="row" id="signInList">
+				<div class="btn btn-login btn-lg col-lg-2 col-md-3 col-sm-6 col-xs-12" id="facebookBtn" ng-click="authenticate('facebook')">Sign in with Facebook</div>
+				<div class="btn btn-login btn-lg col-lg-2 col-md-3 col-sm-6 col-xs-12" id="googleBtn" ng-click="authenticate('google')">Sign in with Google</div>
+				<div class="btn btn-login btn-lg col-lg-2 col-md-3 col-sm-6 col-xs-12" id="twitterBtn" ng-click="authenticate('twitter')">Sign in with Twitter</div>
+				<a href="#" class="btn btn-login btn-lg col-lg-2 col-lg-offset-4 col-md-3 col-sm-6 col-xs-12"> Leaderboard </a>
+			</div>
+		</div>
+		
+		<div ng-controller="QuestLibrary" class="container-fluid wow fadeInLeft" id="questionBoard">
+			<div ng-hide="publish">
+				<p class="question-style"> {{ currentQuestion.data }} </p>
+				<div class="row">
+					<div class="btn btn-answer col-lg-3 col-sm-6 col-xs-12" ng-repeat="ans in currentQuestion.answer" ng-click="select($index)" ng-class="{sel: $index == selected}"> 
+						{{ ans }} 
+					</div>
+				</div>
+				<div class="btn btn-answer marginTop pull-right" ng-click="submitQuestion()"> Submit </div>
+			</div>
+			
+			<div ng-show="publish">
+				<p class="question-style"> Your score is {{ score }} </p>
+				<div ng-repeat="question in list">
+					<p class="question-style"> {{ question.data }} </p>
+					<p class="btn-answer col-lg-3 col-xs-6 col-xs-12" ng-repeat="ans in question.answer" 
+						ng-class="{sel: $index == getSel($parent.$index),right: $index == getRight($parent.$index),good:$index == getRight($parent.$index) && $index == getSel($parent.$index) }"> 
+						{{ ans }} 
+					</p>
+				</div>
+			</div>
+		</div>
+
+    </body>
+</html>
